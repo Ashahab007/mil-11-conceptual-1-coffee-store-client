@@ -12,6 +12,8 @@ import SignIn from "./components/SignIn.jsx";
 import SignUp from "./components/SignUp.jsx";
 import AuthProvider from "./contexts/AuthProvider.jsx";
 import axios from "axios";
+import MyAddedCoffees from "./components/MyAddedCoffees.jsx";
+import PrivateRoute from "./routes/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,10 +32,10 @@ const router = createBrowserRouter([
         path: "addCoffee",
         Component: AddCoffee,
       },
-      // 4.0 now my requirement is show the coffee details in coffee details page
+      // 4.0 now my requirement is show the coffee details in on click in view button
       {
         path: "coffee/:id",
-        // 4.2 use loader to fetch the specific coffee
+        // 4.3 use loader to fetch the specific coffee by id
         loader: ({ params }) =>
           axios(`http://localhost:3000/coffee/${params.id}`),
 
@@ -43,6 +45,18 @@ const router = createBrowserRouter([
         path: "updateCoffee/:id",
 
         Component: UpdateCoffee,
+      },
+      // 5.1 created a route for dynamic email
+      {
+        path: "my-added-coffees/:email",
+        // 5.4 use loader to get the data from the server
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/my-added-coffees/${params.email}`),
+        element: (
+          <PrivateRoute>
+            <MyAddedCoffees></MyAddedCoffees>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "signin",
