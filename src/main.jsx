@@ -39,12 +39,20 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           axios(`http://localhost:3000/coffee/${params.id}`),
 
-        Component: CoffeeDetails,
+        element: (
+          <PrivateRoute>
+            <CoffeeDetails></CoffeeDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "updateCoffee/:id",
 
-        Component: UpdateCoffee,
+        element: (
+          <PrivateRoute>
+            <UpdateCoffee></UpdateCoffee>
+          </PrivateRoute>
+        ),
       },
       // 5.1 created a route for dynamic email
       {
