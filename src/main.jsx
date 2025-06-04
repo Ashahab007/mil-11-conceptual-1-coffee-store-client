@@ -14,6 +14,7 @@ import AuthProvider from "./contexts/AuthProvider.jsx";
 import axios from "axios";
 import MyAddedCoffees from "./components/MyAddedCoffees.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
+import MyOrders from "./components/MyOrders.jsx";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,15 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <CoffeeDetails></CoffeeDetails>
+          </PrivateRoute>
+        ),
+      },
+      // 10.1 created a route but we do not use params we will do it in different way but we can use also params
+      {
+        path: "my-orders",
+        element: (
+          <PrivateRoute>
+            <MyOrders></MyOrders>
           </PrivateRoute>
         ),
       },

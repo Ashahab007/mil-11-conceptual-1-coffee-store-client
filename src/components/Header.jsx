@@ -49,6 +49,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
+                  {/* 10.2 */}
                   <Link to="/my-orders">My Orders</Link>
                 </li>
               </>
