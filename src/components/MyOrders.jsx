@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { data } from "react-router";
+import OrderCoffee from "./OrderCoffee";
 
 const MyOrders = () => {
   const { user } = use(AuthContext);
@@ -20,16 +21,15 @@ const MyOrders = () => {
         console.log(err);
       });
   }, [user]);
+  console.log(orders);
 
   return (
     <div>
-      {orders.map((order) => (
-        <>
-          <p>Order Id: {order._id}</p>
-          <p>Order Coffee Id: {order.coffeeId}</p>
-          <p>Customer Email: {order.customerEmail}</p>
-        </>
-      ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-12">
+        {orders.map((order) => (
+          <OrderCoffee key={order._id} order={order}></OrderCoffee>
+        ))}
+      </div>
     </div>
   );
 };
